@@ -3,6 +3,11 @@ Transform: AWS::Serverless-2016-10-31
 Description: >
   MainWebsiteAPI
 
+Parameters:
+  Stage:
+    Type: String
+    Default: dev
+
 Globals:
   Function:
     Timeout: 3
@@ -26,6 +31,11 @@ Resources:
           Properties:
             Path: /test
             Method: get
+            RestApiId: !Ref APIDeployment
+  APIDeployment:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: !Ref Stage
 
   ApplicationResourceGroup:
     Type: AWS::ResourceGroups::Group
@@ -43,8 +53,8 @@ Resources:
 
 Outputs:
   MainWebsiteAPI:
-    Description: API Gateway endpoint URL for Prod stage for function
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/test/"
+    Description: API Gateway endpoint URL for function
+    Value: !Sub "https://${APIDeployment}.execute-api.${AWS::Region}.amazonaws.com/${Stage}/test/"
   MainWebsiteFunction:
     Description: MainWebsite Lambda Function ARN
     Value: !GetAtt MainWebsiteFunction.Arn
