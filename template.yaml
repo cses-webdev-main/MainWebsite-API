@@ -26,8 +26,7 @@ Resources:
           Properties:
             Path: /test
             Method: get
-            RestApiId: !Ref ApiDeployment
-
+            RestApiId: !Ref APIDeployment
   APIDeployment:
     Type: AWS::Serverless::Api
     Properties:
