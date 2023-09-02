@@ -68,7 +68,7 @@ python -m pytest tests/unit -v
 python -m pytest tests/integration -v
 ```
 
-Although you should do this for testing, feel free to unit test your API with any other resource, such as [Postman](https://www.postman.com/downloads/), which is a highly popular tool for API testing. The integration testing is really a formality, because any issues with the CloudFormation will be blaringly obvious and will usually break on deployment, stopping your merge request. 
+Although you should do this for testing, feel free to unit test your API with any other resource, such as [Postman](https://www.postman.com/downloads/), which is a highly popular tool for API testing. The integration testing is really a formality, because any issues with the CloudFormation will be obvious and will usually break on deployment, stopping your merge request. 
 
 ## Resources
 
