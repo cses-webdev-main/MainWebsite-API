@@ -3,6 +3,11 @@ Transform: AWS::Serverless-2016-10-31
 Description: >
   MainWebsiteAPI
 
+Parameters:
+  Stage:
+    Type: String
+    Default: dev
+
 Globals:
   Function:
     Timeout: 3
@@ -30,7 +35,7 @@ Resources:
   APIDeployment:
     Type: AWS::Serverless::Api
     Properties:
-      StageName: !Sub ${Stage}
+      StageName: !Ref Stage
 
   ApplicationResourceGroup:
     Type: AWS::ResourceGroups::Group
