@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  MainWebsite-API
+  MainWebsiteAPI
 
 Globals:
   Function:
@@ -42,11 +42,11 @@ Resources:
       AutoConfigurationEnabled: 'true'
 
 Outputs:
-  MainWebsite-API:
+  MainWebsiteAPI:
     Description: API Gateway endpoint URL for Prod stage for function
     Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/test/"
   MainWebsiteFunction:
-    Description: Hello World Lambda Function ARN
+    Description: MainWebsite Lambda Function ARN
     Value: !GetAtt MainWebsiteFunction.Arn
   MainWebsiteFunctionIamRole:
     Description: Implicit IAM Role created for function
