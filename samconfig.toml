@@ -3,8 +3,6 @@
 version = 0.1
 
 [default]
-[default.global.parameters]
-stack_name = "MainWebsite-API"
 
 [default.build.parameters]
 cached = true
@@ -32,14 +30,14 @@ warm_containers = "EAGER"
 
 [dev.deploy.parameters]
 stack_name = "MainWebsiteAPIdev"
-s3-bucket = "cses-webdev-main"
+s3_bucket = "cses-webdev-main"
 region = "us-west-1"
 capabilities = "CAPABILITY_IAM"
 parameter_overrides = "Stage=dev"
 
 [prod.deploy.parameters]
 stack_name = "MainWebsiteAPI"
-s3-bucket = "cses-webdev-main"
+s3_bucket = "cses-webdev-main"
 region = "us-west-1"
 capabilities = "CAPABILITY_IAM"
 parameter_overrides = "Stage=prod"
