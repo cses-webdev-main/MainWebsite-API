@@ -30,8 +30,8 @@ Resources:
 
   APIDeployment:
     Type: AWS::Serverless::Api
-      Properties:
-        StageName: !Sub ${Stage}
+    Properties:
+      StageName: !Sub ${Stage}
 
   ApplicationResourceGroup:
     Type: AWS::ResourceGroups::Group
