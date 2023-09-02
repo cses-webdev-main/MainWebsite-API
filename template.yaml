@@ -54,7 +54,7 @@ Resources:
 Outputs:
   MainWebsiteAPI:
     Description: API Gateway endpoint URL for function
-    Value: !Sub "https://${ApiDeployment}.execute-api.${AWS::Region}.amazonaws.com/${Stage}/test/"
+    Value: !Sub "https://${APIDeployment}.execute-api.${AWS::Region}.amazonaws.com/${Stage}/test/"
   MainWebsiteFunction:
     Description: MainWebsite Lambda Function ARN
     Value: !GetAtt MainWebsiteFunction.Arn
