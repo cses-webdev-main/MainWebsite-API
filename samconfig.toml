@@ -29,3 +29,17 @@ warm_containers = "EAGER"
 
 [default.local_start_lambda.parameters]
 warm_containers = "EAGER"
+
+[dev.deploy.parameters]
+stack_name = "MainWebsiteAPIdev"
+s3-bucket = "cses-webdev-main"
+region = "us-west-1"
+capabilities = "CAPABILITY_IAM"
+parameter_overrides = "Stage=dev"
+
+[prod.deploy.parameters]
+stack_name = "MainWebsiteAPI"
+s3-bucket = "cses-webdev-main"
+region = "us-west-1"
+capabilities = "CAPABILITY_IAM"
+parameter_overrides = "Stage=prod"
