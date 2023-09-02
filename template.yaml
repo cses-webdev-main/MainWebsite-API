@@ -1,0 +1,53 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  MainWebsite-API
+
+Globals:
+  Function:
+    Timeout: 3
+
+    Tracing: Active
+  Api:
+    TracingEnabled: true
+Resources:
+  MainWebsiteFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: api/
+      Handler: app.lambda_handler
+      Runtime: python3.11
+      Architectures:
+      - x86_64
+      Events:
+        #!------ List all endpoints and their paths here ------!#
+        Test:
+          Type: Api
+          Properties:
+            Path: /test
+            Method: get
+
+  ApplicationResourceGroup:
+    Type: AWS::ResourceGroups::Group
+    Properties:
+      Name:
+        Fn::Sub: ApplicationInsights-SAM-${AWS::StackName}
+      ResourceQuery:
+        Type: CLOUDFORMATION_STACK_1_0
+  ApplicationInsightsMonitoring:
+    Type: AWS::ApplicationInsights::Application
+    Properties:
+      ResourceGroupName:
+        Ref: ApplicationResourceGroup
+      AutoConfigurationEnabled: 'true'
+
+Outputs:
+  MainWebsite-API:
+    Description: API Gateway endpoint URL for Prod stage for function
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/test/"
+  MainWebsiteFunction:
+    Description: Hello World Lambda Function ARN
+    Value: !GetAtt MainWebsiteFunction.Arn
+  MainWebsiteFunctionIamRole:
+    Description: Implicit IAM Role created for function
+    Value: !GetAtt MainWebsiteFunctionRole.Arn
