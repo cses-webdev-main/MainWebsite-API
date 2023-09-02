@@ -26,6 +26,12 @@ Resources:
           Properties:
             Path: /test
             Method: get
+            RestApiId: !Ref ApiDeployment
+
+  APIDeployment:
+    Type: AWS::Serverless::Api
+      Properties:
+        StageName: !Sub ${Stage}
 
   ApplicationResourceGroup:
     Type: AWS::ResourceGroups::Group
@@ -43,8 +49,8 @@ Resources:
 
 Outputs:
   MainWebsiteAPI:
-    Description: API Gateway endpoint URL for Prod stage for function
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/test/"
+    Description: API Gateway endpoint URL for function
+    Value: !Sub "https://${ApiDeployment}.execute-api.${AWS::Region}.amazonaws.com/${Stage}/test/"
   MainWebsiteFunction:
     Description: MainWebsite Lambda Function ARN
     Value: !GetAtt MainWebsiteFunction.Arn
