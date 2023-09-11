@@ -70,6 +70,17 @@ python -m pytest tests/integration -v
 
 Although you should do this for testing, feel free to unit test your API with any other resource, such as [Postman](https://www.postman.com/downloads/), which is a highly popular tool for API testing. The integration testing is really a formality, because any issues with the CloudFormation will be obvious and will usually break on deployment, stopping your merge request. 
 
+## Database
+
+On the actual hosting services running the prod and dev stages, the database credentials are handled for you with these environment secrets:
+```
+DB_USER = username_here
+DB_PASS = password_here
+DB_HOST = endpoint:port_here
+DB_DATABASE = instance-name_here
+```
+When testing locally, [host a local database](https://ladvien.com/data-analytics-mysql-localhost-setup/) and use the credentials you create in place of these.
+
 ## Resources
 
 See the [AWS SAM developer guide](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/what-is-sam.html) for more info.
